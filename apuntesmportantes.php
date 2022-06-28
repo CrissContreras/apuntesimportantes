@@ -1994,8 +1994,38 @@ select * from Users_Pos where usr_usuario like '%atonato%'
 http://192.168.100.170:880/pos/corte_caja/desmontado_cajero.php
 
 
-produccion Venzuela
+
 https://sirinternacional-dev.azurewebsites.net/
 Usuario: pruebas
+Clave:Pruebas12
+Produccion Venzuela
+https://sistemagerenteven.azurewebsites.net/
+Usuario:ccontreras
+Clave:developer*613
 
-Clave:pruebas12
+
+****************Ajustes**********
+fn_articuloBodega --- comprueba l inventario en al toma fisica
+
+
+fn_articuloAjuste --
+
+lc_SelecTipo= document.getElementById("TipoMov");
+
+
+lc_opcMov = document.getElementById("TipoMov").value;
+	
+    
+	lc_validaEsado="ValidaEstadoMovimiento"; 
+	ajax=nuevoAjax();
+	ajax.open("POST", "configura_ajuste.php");
+	ajax.setRequestHeader("Content-Type","application/x-www-form-urlencoded"); 
+	ajax.send("tipo='"+lc_validaEsado+"'&restaurant="+lc_CodRest.value+"&Ajuste="+lc_ajuste+"&Movimiento="+lc_opcMov+"&fecha="+lc_fecha.value);
+	ajax.onreadystatechange=function()
+	{
+		if (ajax.readyState == 4) {
+			lc_respuestaEstado = ajax.responseText;
+			if (lc_respuestaEstado > 0) {
+				sir_alert("No puede crear un ajuste porque la Compra de Caja Chica esta en estado Por exportar.");
+				return;
+			}else{
